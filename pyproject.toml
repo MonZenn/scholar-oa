@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scholar-oa"
+version = "0.1.0"
+description = "Automated Open-Access Academic Paper Discovery and Downloader"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [
+    { name = "Ramon John L. Dela Cruz" }
+]
+keywords = ["academic", "open-access", "arxiv", "google-scholar", "research", "paper-downloader"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Utilities"
+]
+dependencies = [
+    "scholarly>=1.7.11"
+]
+
+[project.scripts]
+scholar-oa = "scholar_oa:main"
