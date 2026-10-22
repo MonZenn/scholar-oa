@@ -39,6 +39,71 @@ pip install .
 
 ---
 
+## AI Agent Skill Installation
+
+`scholar-oa` includes a pre-packaged [`SKILL.md`](SKILL.md) conforming to the Agent Skills standard, enabling autonomous AI coding agents (such as Google Antigravity, Claude Code, OpenAI Codex, Cursor, and Windsurf) to discover and retrieve academic literature directly during research workflows.
+
+### Quick Install by Agent Framework
+
+#### 1. Google Antigravity / Gemini CLI (`agy`)
+Install to your global agent skills configuration:
+```bash
+mkdir -p ~/.gemini/config/skills/scholar-oa
+curl -sSL https://raw.githubusercontent.com/MonZenn/scholar-oa/main/SKILL.md -o ~/.gemini/config/skills/scholar-oa/SKILL.md
+pip install git+https://github.com/MonZenn/scholar-oa.git
+```
+*(Or for a project-scoped skill, place `SKILL.md` in `<WORKSPACE_ROOT>/.gemini/skills/scholar-oa/SKILL.md`)*
+
+#### 2. Claude Code (`claude`)
+Install to Claude's skill repository:
+```bash
+mkdir -p ~/.claude/skills/scholar-oa
+curl -sSL https://raw.githubusercontent.com/MonZenn/scholar-oa/main/SKILL.md -o ~/.claude/skills/scholar-oa/SKILL.md
+pip install git+https://github.com/MonZenn/scholar-oa.git
+```
+
+#### 3. OpenAI Codex / Cursor / Windsurf / Universal Agent Standards
+Install to the universal agent skills directory (`~/.agents/skills/`):
+```bash
+mkdir -p ~/.agents/skills/scholar-oa
+curl -sSL https://raw.githubusercontent.com/MonZenn/scholar-oa/main/SKILL.md -o ~/.agents/skills/scholar-oa/SKILL.md
+pip install git+https://github.com/MonZenn/scholar-oa.git
+```
+
+---
+
+## Instructions for Autonomous Agents
+
+If you are an AI assistant or autonomous coding agent instructed to install or configure `scholar-oa` as an active skill in your current runtime environment, execute the following procedure:
+
+1. **Install the CLI package**:
+   ```bash
+   pip install git+https://github.com/MonZenn/scholar-oa.git
+   ```
+   *If working locally inside the cloned repository, run `pip install .` instead.*
+
+2. **Deploy the skill definition**:
+   Determine which agent environment you are executing in and copy [`SKILL.md`](SKILL.md) to the appropriate destination:
+   - **Antigravity / Gemini CLI**: `~/.gemini/config/skills/scholar-oa/SKILL.md`
+   - **Claude Code**: `~/.claude/skills/scholar-oa/SKILL.md`
+   - **Codex / Universal**: `~/.agents/skills/scholar-oa/SKILL.md`
+   - **Workspace Level**: `<WORKSPACE_ROOT>/.agents/skills/scholar-oa/SKILL.md` or `<WORKSPACE_ROOT>/.gemini/skills/scholar-oa/SKILL.md`
+
+3. **Verify CLI availability**:
+   ```bash
+   scholar-oa --help
+   ```
+
+4. **Agent Execution Protocol**:
+   When answering user requests to find or download academic papers:
+   - Identify the user's topic and requested destination directory (default to `./papers/` if unspecified).
+   - Ensure target directory exists: `mkdir -p "<TARGET_DIR>"`.
+   - Run: `scholar-oa "<QUERY>" --limit <N> --output-dir "<TARGET_DIR>"`.
+   - Verify that retrieved `.pdf` files have valid `%PDF-` header signatures.
+   - Summarize retrieved papers in a clean markdown table with Title, Year, Source, and local file paths.
+
+---
+
 ## Usage
 
 ### Topic Search and Bulk Download
